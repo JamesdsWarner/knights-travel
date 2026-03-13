@@ -1,73 +1,69 @@
-# React + TypeScript + Vite
+# Knight's Travel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React & TypeScript application that solves the **Knight’s Travel** problem. This project demonstrates a backtracking algorithm optimised with **Warnsdorff's rule** on a chessboard.
 
-Currently, two official plugins are available:
+## The Challenge
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A knight must visit every square on an $N \times N$ board exactly once.
 
-## React Compiler
+## The Solution: Backtracking + Warnsdorff's Rule
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+To solve the Travel efficiently, this application implements **Warnsdorff's rule**:
 
-## Expanding the ESLint configuration
+1.  At each step, the algorithm evaluates all 8 possible knight moves.
+2.  It chooses the move that leads to a square with the fewest onward moves available.
+3.  A backtracking algorithm is implemented allowing it to recover from dead ends if they occur.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React 18** - UI and State Management.
+- **TypeScript** - Strong typing for matrix structures and movement coordinates.
+- **Vite** - High-performance build tool.
+- **Vitest** - Unit testing framework.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## How to Get Up and Running
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Follow these steps to clone, install, and run the project locally.
+
+### 1. Clone the Repository
+
+Open your terminal and run the following commands:
+
+```bash
+git clone [https://github.com/jamesdswarner/knights-travel.git](https://github.com/jamesdswarner/knights-travel.git)
+cd knights-travel
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Ensure you have Node.js installed, then run:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+npm install
+
+### 3. Start the Development Server
+
+npm run dev
+
+### 4. Access the Application
+
+Once the server is running, the terminal will display a local URL:
+
+http://localhost:5173
+
+Copy and paste this into your browser to view the chess board and the moves made.
+
+## Changing board size
+
+To test its performance with different board sizes, change the value of `BOARD_SIZE` at `src/constants.ts`.
+
+By default, it is 8 to simulate a real chess board.
+
+NOTE: below 5, it is impossible to solve due to constraints of movement for the knight. At some size, the maximum call stack size is exceeded, for me it was 70.
+
+## Running Tests
+
+The project uses **Vitest**. You can run the test suite using:
+
+```bash
+npx vitest run
 ```
