@@ -57,12 +57,14 @@ function App() {
                       style={{
                         borderWidth: "1px",
                         borderStyle: "solid",
-                        width: "70px",
-                        height: "70px",
+                        width: "50px",
+                        height: "50px",
                         backgroundColor: color(),
                         color: "black",
-                        textAlign: "center",
-                        fontSize: "20px",
+                        fontSize: "12px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                     >
                       <p>{square}</p>
