@@ -30,7 +30,7 @@ Follow these steps to clone, install, and run the project locally.
 Open your terminal and run the following commands:
 
 ```bash
-git clone [https://github.com/jamesdswarner/knights-travel.git](https://github.com/jamesdswarner/knights-travel.git)
+git clone https://github.com/jamesdswarner/knights-travel.git
 cd knights-travel
 ```
 
